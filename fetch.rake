@@ -2,6 +2,7 @@
 require "google_drive"
 require 'byebug'
 
+# TODO constantsにテーブル定義を逃がす
 EXPORT_TABLES = [:items, :forges, :drops, :stages, :equips, :characters]
 SPREADSHEET_KEY = "1oLsj8Gc-UWq0EXf0wfzrikgXlCaON5qvNJ5O3ouvc8Y"
 
