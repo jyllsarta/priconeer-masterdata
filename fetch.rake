@@ -7,8 +7,6 @@ require 'git'
 EXPORT_TABLES = [:items, :forges, :drops, :stages, :equips, :characters]
 SPREADSHEET_KEY = "1oLsj8Gc-UWq0EXf0wfzrikgXlCaON5qvNJ5O3ouvc8Y"
 
-GIT_BRANCH = "master"
-
 namespace :masterdata do
   task :fetch do |_, args|
 
@@ -24,27 +22,32 @@ namespace :masterdata do
     push_to_repository
   end
 
+  def work_branch_name
+    "masterdata_#{Time.current.localtime.strftime('%Y%m%d%H%M%S')}"
+  end
 
   def reset_repository
     git_client = Git.open("./")
 
     git_client.reset_hard
     git_client.pull
-    git_client.checkout(GIT_BRANCH)
+    git_client.checkout("master")
   end
 
   def push_to_repository
     git_client = Git.open("./")
+    g.checkout(g.branch(work_branch_name))
     # ファイルを追加してコミット
     git_client.add("seeds/*")
     begin
       git_client.commit("update by Masterdata Task #{Time.now.to_s}")
-      git_client.push("origin", GIT_BRANCH)
+      git_client.push("origin", work_branch_name)
     rescue Git::GitExecuteError => e
       puts e.class
       puts e.message
       puts e.backtrace
     end
+    g.checkout("master")
   end
 end
 
