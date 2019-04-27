@@ -23,7 +23,7 @@ namespace :masterdata do
   end
 
   def work_branch_name
-    "masterdata_#{Time.current.localtime.strftime('%Y%m%d%H%M%S')}"
+    "masterdata_#{Time.now.strftime('%Y%m%d%H%M%S')}"
   end
 
   def reset_repository
