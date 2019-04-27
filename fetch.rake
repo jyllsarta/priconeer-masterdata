@@ -36,7 +36,7 @@ namespace :masterdata do
 
   def push_to_repository
     git_client = Git.open("./")
-    g.checkout(g.branch(work_branch_name))
+    git_client.checkout(git_client.branch(work_branch_name))
     # ファイルを追加してコミット
     git_client.add("seeds/*")
     begin
@@ -47,7 +47,7 @@ namespace :masterdata do
       puts e.message
       puts e.backtrace
     end
-    g.checkout("master")
+    git_client.checkout("master")
   end
 end
 
