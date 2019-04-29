@@ -2,8 +2,8 @@
 
 ## install
 
-てきとうなばしょにおくだけ
-priconeer/masterdataへの設置を推奨
+just clone
+priconner/masterdata への設置を推奨
 
 ```shell
 cd priconeer
